@@ -49,14 +49,14 @@ function handleClick({
 export default function QuestComponent({ question }: { question: Question }) {
   return (
     <>
-      <p className="text-3xl font-bold text-white ">
+      <p className="lg:text-3xl text-2xl font-bold text-white ">
         <span>{question.number}</span>&#41; {question.content}
       </p>
-      <div className="border-gray-400 text-xl border-2 p-3 grid grid-cols-1 grid-rows-3 mt-2 rounded-sm">
+      <div className="border-gray-400 lg:text-xl text-lg border-2 lg:p-3 p-1 grid grid-cols-1 grid-rows-3 lg:mt-2 mt-1 rounded-sm">
         {question.answers.map((answer) => (
           <button
             key={answer.content}
-            className="col-span-1 row-span-1 text-left p-3 mt-2 rounded-md hover:bg-gray-800"
+            className="col-span-1 row-span-1 text-left lg:p-3 p-1 lg:mt-2 mt-1 rounded-md hover:bg-gray-800"
             onClick={(e) => handleClick({ answer, question, e })}
           >
             {answer.content}
