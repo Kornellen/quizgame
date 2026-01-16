@@ -1,5 +1,5 @@
-import { Quest } from "@/generated/prisma/client";
+import { Question } from "@/app/page";
 
 export interface IQuestionsRepo {
-  getRandomQuestion(): Quest;
+  getRandomQuestion(questId: number): Promise<Question | null>;
 }
