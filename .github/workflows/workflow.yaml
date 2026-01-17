@@ -20,16 +20,16 @@ jobs:
       - name: Clone deploy repo
         env:
           DEPLOY_TOKEN: ${{secrets.DEPLOY_TOKEN}}
-        uses: actions/checkout@v4
-        with:
-          repository: "Kornellen/quizgame_deploy"
-          ref: "main"
-          token: ${DEPLOY_TOKEN}
-          path: "../deploy"
+        run: |
+          mkdir ../deploy
+          git clone https://x-access-token:${DEPLOY_TOKEN}@github.com/Kornellen/quizgame_deploy.git ../deploy
+          pwd
+          cd ../deploy
+          git checkout main || git checkout -b main
 
       - name: Copy source code
         run: |
-          rsync --delete -av --exclude='.git' --exclude='node_modules' --exclude='.env' ./ ../deploy/
+          rsync --delete -av --exclude='.git' --exclude='node_modules' --exclude='.env' ../quizgame/ ../deploy/
 
       - name: Commit & push to deploy repo
         working-directory: ../deploy
