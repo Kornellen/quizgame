@@ -16,19 +16,23 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
+          ls -l
 
       - name: Clone deploy repo
         env:
           DEPLOY_TOKEN: ${{secrets.DEPLOY_TOKEN}}
         run: |
-          git clone https://x-access-token:${DEPLOY_TOKEN}@github.com/Kornellen/quizgame_deploy.git deploy
-          cd deploy
+          mkdir ../deploy
+          git clone https://x-access-token:${DEPLOY_TOKEN}@github.com/Kornellen/quizgame_deploy.git ../deploy
+          pwd
+          cd ../deploy
           git checkout main || git checkout -b main
 
       - name: Copy source code
         run: |
-          rsync --delete -av --exclude='.git' --exclude='node_modules' --exclude='.env' ../ ./deploy/
-          cd deploy
+          pwd
+          rsync --delete -av --exclude='.git' --exclude='node_modules' --exclude='.env' ../quizgame/ ../deploy/
+          cd ../deploy
 
       - name: Commit & push to deploy repo
         run: |
