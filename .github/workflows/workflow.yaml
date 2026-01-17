@@ -31,11 +31,15 @@ jobs:
       - name: Copy source code
         run: |
           pwd
+          ls -la ../
           rsync --delete -av --exclude='.git' --exclude='node_modules' --exclude='.env' ../quizgame/ ../deploy/
           cd ../deploy
 
       - name: Commit & push to deploy repo
         run: |
+          pwd
+          cd ../deploy
+          pwd
           git add .
           git commit -m "Sync from quizgame repo" || echo "No changes to commit"
           git push origin main
