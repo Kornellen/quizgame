@@ -16,30 +16,24 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          ls -l
 
       - name: Clone deploy repo
         env:
           DEPLOY_TOKEN: ${{secrets.DEPLOY_TOKEN}}
-        run: |
-          mkdir ../deploy
-          git clone https://x-access-token:${DEPLOY_TOKEN}@github.com/Kornellen/quizgame_deploy.git ../deploy
-          pwd
-          cd ../deploy
-          git checkout main || git checkout -b main
+        uses: actions/checkout@v4
+        with:
+          repository: "Kornellen/quizgame_deploy"
+          ref: "main"
+          token: ${DEPLOY_TOKEN}
+          path: "../deploy"
 
       - name: Copy source code
         run: |
-          pwd
-          ls -la ../
-          rsync --delete -av --exclude='.git' --exclude='node_modules' --exclude='.env' ../quizgame/ ../deploy/
-          cd ../deploy
+          rsync --delete -av --exclude='.git' --exclude='node_modules' --exclude='.env' ./ ../deploy/
 
       - name: Commit & push to deploy repo
+        working-directory: ../deploy
         run: |
-          pwd
-          cd ../deploy
-          pwd
           git add .
           git commit -m "Sync from quizgame repo" || echo "No changes to commit"
           git push origin main
