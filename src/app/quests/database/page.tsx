@@ -1,6 +1,8 @@
 import { getAllQuestions } from "@/lib/questions/Question.action";
 import FilteredQuestionsList from "./_components/FilteredQuestionList.component";
 
+export const dynamic = "force-dynamic";
+
 export default async function Page() {
   const questions = await getAllQuestions();
 

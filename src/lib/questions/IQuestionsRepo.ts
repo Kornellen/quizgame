@@ -1,9 +1,15 @@
-import { Question } from "@/app/page";
+import { Answer } from "@/generated/prisma/client";
+
+export type QuestionDetials = {
+  id: number;
+  content: string;
+  answers: Pick<Answer, "content" | "isCorrect">[];
+};
 
 export interface IQuestionsRepo {
-  getRandomQuestion(questId: number): Promise<Question | null>;
+  getRandomQuestion(questId: number): Promise<QuestionDetials | null>;
 
-  getAllQuestions(): Promise<Question[] | null>;
+  getAllQuestions(): Promise<QuestionDetials[] | null>;
 
-  getQuestionById(index: number): Promise<Question | null>;
+  getQuestionById(index: number): Promise<QuestionDetials | null>;
 }

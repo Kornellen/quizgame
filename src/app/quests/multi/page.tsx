@@ -2,6 +2,7 @@ import { getFullExam } from "@/lib/questions/Question.action";
 import Form from "./_components/Form.component";
 
 export const cache = "no-store";
+export const dynamic = "force-dynamic";
 export default async function Page() {
   const examQuestions = await getFullExam();
 

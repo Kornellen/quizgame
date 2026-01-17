@@ -1,6 +1,5 @@
-import { IQuestionsRepo } from "./IQuestionsRepo";
+import { IQuestionsRepo, QuestionDetials } from "./IQuestionsRepo";
 import { prisma } from "../prisma";
-import { Answer, Question } from "@/app/page";
 
 export class QuestionsRepo implements IQuestionsRepo {
   private constructor() {}
@@ -12,8 +11,7 @@ export class QuestionsRepo implements IQuestionsRepo {
 
     return this.instance;
   }
-
-  async getRandomQuestion(questionId: number): Promise<Question | null> {
+  async getRandomQuestion(questionId: number): Promise<QuestionDetials | null> {
     const questionData = await prisma.quest.findUnique({
       where: { id: questionId },
       select: {
@@ -30,45 +28,22 @@ export class QuestionsRepo implements IQuestionsRepo {
 
     if (!questionData) return null;
 
-    const questionDataDTO: Question = {
-      number: questionData.id,
-      content: questionData.content,
-      answers: questionData.answers.map(
-        (answ): Answer => ({
-          content: answ.content,
-          isCorrect: answ.isCorrect,
-        })
-      ),
-    };
-
-    return questionDataDTO;
+    return questionData;
   }
-  async getAllQuestions(): Promise<Question[] | null> {
+  async getAllQuestions(): Promise<QuestionDetials[] | null> {
     const questions = await prisma.quest.findMany({
       select: {
-        content: true,
         id: true,
+        content: true,
         answers: { select: { isCorrect: true, content: true } },
       },
+      orderBy: { id: "asc" },
     });
 
-    const questionsDTO: Question[] = questions.map(
-      (question): Question => ({
-        number: question.id,
-        content: question.content,
-        answers: question.answers.map(
-          (answ): Answer => ({
-            content: answ.content,
-            isCorrect: answ.isCorrect,
-          })
-        ),
-      })
-    );
-
-    return questionsDTO;
+    return questions;
   }
 
-  async getQuestionById(id: number): Promise<Question | null> {
+  async getQuestionById(id: number): Promise<QuestionDetials | null> {
     const question = await prisma.quest.findUnique({
       where: { id: id },
       select: {
@@ -85,17 +60,6 @@ export class QuestionsRepo implements IQuestionsRepo {
 
     if (!question) return null;
 
-    const questionDTO: Question = {
-      number: question.id,
-      content: question.content,
-      answers: question.answers.map(
-        (answ): Answer => ({
-          content: answ.content,
-          isCorrect: answ.isCorrect,
-        })
-      ),
-    };
-
-    return questionDTO;
+    return question;
   }
 }

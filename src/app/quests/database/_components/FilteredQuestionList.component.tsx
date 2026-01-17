@@ -31,7 +31,7 @@ export default function FilteredQuestionsList({
           .filter(
             (question) =>
               (question.number === Number(search) && question) ||
-              search === null
+              search === null,
           )
           .map((question) => (
             <li key={question.number} className="mt-10">
