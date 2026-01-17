@@ -27,7 +27,7 @@ jobs:
 
       - name: Copy source code
         run: |
-          rsync -av --exclude='.git' --exclude='node_modules' --exclude='.env' ../ ./deploy/
+          rsync --delete -av --exclude='.git' --exclude='node_modules' --exclude='.env' ../ ./deploy/
           cd deploy
 
       - name: Commit & push to deploy repo
