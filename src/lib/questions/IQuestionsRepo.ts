@@ -9,7 +9,10 @@ export type QuestionDetials = {
 export interface IQuestionsRepo {
   getRandomQuestion(questId: number): Promise<QuestionDetials | null>;
 
-  getAllQuestions(): Promise<QuestionDetials[] | null>;
+  getPageOfQuestions(
+    lastSeenId: number,
+    questionsPerPage: number,
+  ): Promise<QuestionDetials[] | null>;
 
   getQuestionById(index: number): Promise<QuestionDetials | null>;
 }

@@ -8,10 +8,11 @@ export async function getRandomQuestion(): Promise<Question | null> {
   return question;
 }
 
-export async function getAllQuestions(): Promise<Question[] | null> {
-  const questions = await service.getAllQuestions();
-
-  return questions;
+export async function getPageQuestions(
+  lastSeenId: number = 1,
+  questionsPerPage: number = 50,
+): Promise<Question[] | null> {
+  return service.getPageOfQuestions(lastSeenId, questionsPerPage);
 }
 
 export async function getFullExam(): Promise<Question[] | null> {

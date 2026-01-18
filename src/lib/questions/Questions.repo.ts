@@ -30,13 +30,18 @@ export class QuestionsRepo implements IQuestionsRepo {
 
     return questionData;
   }
-  async getAllQuestions(): Promise<QuestionDetials[] | null> {
+  async getPageOfQuestions(
+    lastSeenId: number,
+    questionsPerPage: number = 50,
+  ): Promise<QuestionDetials[] | null> {
     const questions = await prisma.quest.findMany({
       select: {
         id: true,
         content: true,
         answers: { select: { isCorrect: true, content: true } },
       },
+      cursor: { id: lastSeenId },
+      take: questionsPerPage,
       orderBy: { id: "asc" },
     });
 

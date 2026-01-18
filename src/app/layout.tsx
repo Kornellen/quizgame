@@ -27,7 +27,7 @@ export default function RootLayout({
     { path: "/", name: "Home" },
     { path: "/quests/multi", name: "Multi Question Test" },
     { path: "/quests/single", name: "Single Question Test" },
-    { path: "/quests/database", name: "Database" },
+    { path: "/quests/database?page=1", name: "Database" },
   ];
   return (
     <html lang="en">

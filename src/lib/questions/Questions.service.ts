@@ -39,8 +39,14 @@ export class QuestionService {
     return questionDataDTO(question);
   }
 
-  async getAllQuestions(): Promise<Question[] | null> {
-    const questions = await this.questionRepo.getAllQuestions();
+  async getPageOfQuestions(
+    lastSeenId = 0,
+    questionsPerPage = 50,
+  ): Promise<Question[] | null> {
+    const questions = await this.questionRepo.getPageOfQuestions(
+      lastSeenId,
+      questionsPerPage,
+    );
 
     if (!questions) return null;
 

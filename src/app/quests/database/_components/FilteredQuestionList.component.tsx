@@ -2,13 +2,17 @@
 import { Question } from "@/app/page";
 import Searchbar from "./Searchbar.component";
 import { useState } from "react";
+import Pagination from "./Pagination";
 
 export default function FilteredQuestionsList({
   questions,
+  page,
 }: {
   questions: Question[];
+  page: number;
 }) {
   const [search, setSearch] = useState<number | null>(null);
+  const numberOfQuestions = 415;
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
     const currentInputValue = e.currentTarget.value;
@@ -25,7 +29,15 @@ export default function FilteredQuestionsList({
 
   return (
     <>
-      <Searchbar handleChange={handleChange} numOfQuestions={415} />
+      <Searchbar
+        handleChange={handleChange}
+        numOfQuestions={numberOfQuestions}
+      />
+      <Pagination
+        page={page}
+        lastQuestionId={questions[questions.length - 1].number}
+        numOfQuestions={numberOfQuestions}
+      />
       <ol className="">
         {questions
           .filter(

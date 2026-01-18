@@ -13,55 +13,59 @@ export default function Form({ questions }: { questions: Question[] }) {
 
     for (let idx = 0; idx < questions.length; idx++) {
       const correctAnswer = questions[idx].answers.find(
-        (answ) => answ.isCorrect
+        (answ) => answ.isCorrect,
       );
 
       if (correctAnswer) correctAnswers.push(correctAnswer.content);
     }
 
+    e.currentTarget
+      .querySelectorAll("div ul li input[type='radio']")
+      .forEach((input) => input.setAttribute("disabled", "true"));
+
     let correctUserAnsw: number = 0;
-    const allInputs = Array.from(
-      e.currentTarget.querySelectorAll("div ul li input[type='radio'] + label")
+    const allInputsLabels = Array.from(
+      e.currentTarget.querySelectorAll("div ul li input[type='radio'] + label"),
     );
 
-    const checkedInputs = e.currentTarget.querySelectorAll(
-      "div ul li input[type='radio']:checked + label"
+    const checkedInputsWithLabels = e.currentTarget.querySelectorAll(
+      "div ul li input[type='radio']:checked + label",
     );
 
-    if (checkedInputs.length < correctAnswers.length)
-      allInputs.forEach((input) =>
+    if (checkedInputsWithLabels.length < correctAnswers.length)
+      allInputsLabels.forEach((input) =>
         correctAnswers.includes(input.textContent)
           ? input.parentElement?.classList.add(
               "bg-green-500",
-              "hover:bg-green-700"
+              "hover:bg-green-700",
             )
-          : null
+          : null,
       );
 
-    checkedInputs.forEach((input) => {
+    checkedInputsWithLabels.forEach((input) => {
       if (correctAnswers.includes(input.textContent)) {
         input.parentElement?.classList.add(
           "bg-green-500",
-          "hover:bg-green-700"
+          "hover:bg-green-700",
         );
         return (correctUserAnsw += 1);
       }
       input.parentElement?.classList.add("bg-red-500", "hover:bg-red-700");
 
-      allInputs.forEach((input) =>
+      allInputsLabels.forEach((input) =>
         correctAnswers.includes(input.textContent)
           ? input.parentElement?.classList.add(
               "bg-green-500",
-              "hover:bg-green-700"
+              "hover:bg-green-700",
             )
-          : null
+          : null,
       );
     });
 
     alert(
       `Correct: ${correctUserAnsw} / ${correctAnswers.length}. It\'s ${
         (correctUserAnsw / correctAnswers.length) * 100
-      }%`
+      }%`,
     );
   }
 
