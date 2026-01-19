@@ -17,7 +17,7 @@ export default async function Page({ searchParams }: Props) {
 
   if (sp && sp.page) page = Number(await sp.page);
 
-  if (page > 1) lastSeenId = Math.abs(page * QUESTIONS_PER_PAGE + 1);
+  if (page > 1) lastSeenId = Math.abs((page - 1) * QUESTIONS_PER_PAGE) + 1;
 
   const questions = await getPageQuestions(lastSeenId, QUESTIONS_PER_PAGE);
 
