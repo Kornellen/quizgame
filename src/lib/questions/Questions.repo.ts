@@ -67,4 +67,23 @@ export class QuestionsRepo implements IQuestionsRepo {
 
     return question;
   }
+
+  async getQuestionsForExam(ids: number[]): Promise<QuestionDetials[] | null> {
+    const questions = await prisma.quest.findMany({
+      where: { id: { in: [...ids] } },
+      select: {
+        content: true,
+        id: true,
+        answers: {
+          select: {
+            isCorrect: true,
+            content: true,
+          },
+        },
+      },
+    });
+    if (!questions) return null;
+
+    return questions;
+  }
 }

@@ -15,4 +15,6 @@ export interface IQuestionsRepo {
   ): Promise<QuestionDetials[] | null>;
 
   getQuestionById(index: number): Promise<QuestionDetials | null>;
+
+  getQuestionsForExam(ids: number[]): Promise<QuestionDetials[] | null>;
 }

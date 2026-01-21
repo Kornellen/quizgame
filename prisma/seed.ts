@@ -13,7 +13,6 @@ async function seed() {
   for (const q of questions) {
     await prisma.quest.create({
       data: {
-        id: q.number,
         content: q.content,
         answers: {
           create: q.answers.map((a) => ({

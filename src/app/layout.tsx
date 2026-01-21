@@ -46,6 +46,35 @@ export default function RootLayout({
           ))}
         </nav>
         {children}
+        <footer className="flex items-center flex-wrap lg:justify-center lg:gap-5 lg:h-15 p-3 text-xl">
+          <p className="w-full text-center">
+            Copyright &copy; 2026
+            {new Date().getFullYear() === 2026
+              ? ""
+              : "-" + new Date().getFullYear()}{" "}
+            Kornellen
+          </p>
+          <p className="w-full text-center">Links:</p>
+          <ul className="grid grid-cols-3 grid-rows-2 items-center">
+            {addresses.map((address) => (
+              <Link
+                className="row-span-1 col-span-1 hover:bg-gray-800 p-3 rounded-md"
+                key={address.name}
+                href={address.path}
+              >
+                {address.name}
+              </Link>
+            ))}
+            <li>
+              <Link
+                className="row-span-1 col-span-1 hover:bg-gray-800 p-3 rounded-md"
+                href={"https://github.com/Kornellen/quizgame/"}
+              >
+                Source Code
+              </Link>
+            </li>
+          </ul>
+        </footer>
       </body>
     </html>
   );

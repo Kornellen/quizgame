@@ -1251,11 +1251,11 @@
       },
       {
         "content": "NIE",
-        "isCorrect": true
+        "isCorrect": false
       },
       {
         "content": "tylko wyjątkowo.",
-        "isCorrect": false
+        "isCorrect": true
       }
     ]
   },

@@ -71,15 +71,11 @@ export class QuestionService {
     return questionsDTO(questions);
   }
 
-  async getExamQuestions(indexes: number[]): Promise<Question[]> {
-    const questions: QuestionDetials[] = [];
+  async getExamQuestions(indexes: number[]): Promise<Question[] | null> {
+    const questions: QuestionDetials[] | null =
+      await this.questionRepo.getQuestionsForExam(indexes);
 
-    for (let index = 0; index < indexes.length; index++) {
-      const id = indexes[index];
-      const question = await this.questionRepo.getQuestionById(id);
-
-      if (question) questions.push(question);
-    }
+    if (!questions) return null;
 
     const examQuestionsDTO: DTOMapper<QuestionDetials[], Question[]> = (
       questions,

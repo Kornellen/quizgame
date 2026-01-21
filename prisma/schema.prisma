@@ -30,6 +30,6 @@ model Answer {
   questId Int
   quest Quest @relation(fields: [questId], references: [id])
 
-  @@index([id])
+  @@index([id, questId])
   @@id([id])
 }

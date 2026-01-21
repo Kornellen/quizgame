@@ -23,7 +23,7 @@ export async function getFullExam(): Promise<Question[] | null> {
     if (!IDs.includes(id)) IDs.push(id);
   }
 
-  const questions: Question[] = await service.getExamQuestions(IDs);
+  const questions: Question[] | null = await service.getExamQuestions(IDs);
 
   return questions;
 }
