@@ -1,5 +1,6 @@
 import { getPageQuestions } from "@/lib/questions/Question.action";
 import FilteredQuestionsList from "./_components/FilteredQuestionList.component";
+import GoToTopBtn from "../_components/GoToTopButton.component";
 
 export const dynamic = "force-dynamic";
 type Props = {
@@ -29,6 +30,7 @@ export default async function Page({ searchParams }: Props) {
         Question DB
       </p>
       <FilteredQuestionsList questions={questions} page={page} />
+      <GoToTopBtn />
     </>
   );
 }
