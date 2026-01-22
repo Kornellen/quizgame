@@ -1,4 +1,4 @@
-import { Answer, Question } from "@/app/page";
+import { Answer, Question } from "@/types/index.type";
 import { IQuestionsRepo, QuestionDetials } from "./IQuestionsRepo";
 import { QuestionsRepo } from "./Questions.repo";
 

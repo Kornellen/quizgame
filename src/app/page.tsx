@@ -1,12 +1,5 @@
 "use client";
 
-export type Answer = { content: string; isCorrect: boolean };
-
-export type Question = {
-  number: number;
-  content: string;
-  answers: Answer[];
-};
 export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-50 font-sans dark:bg-gray-950">

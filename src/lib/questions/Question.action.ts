@@ -1,5 +1,5 @@
 "use server";
-import { Question } from "@/app/page";
+import { Question } from "@/types/index.type";
 import { QuestionService } from "./Questions.service";
 
 const service = QuestionService.getInstance();

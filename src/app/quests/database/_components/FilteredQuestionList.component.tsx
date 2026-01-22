@@ -1,8 +1,8 @@
 "use client";
-import { Question } from "@/app/page";
 import Searchbar from "./Searchbar.component";
 import { useState } from "react";
 import Pagination from "./Pagination";
+import { Question } from "@/types/index.type";
 
 export default function FilteredQuestionsList({
   questions,

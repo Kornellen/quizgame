@@ -1,5 +1,5 @@
 "use client";
-import { Answer, Question } from "@/app/page";
+import { Answer, Question } from "@/types/index.type";
 
 function handleClick({
   answer,
@@ -23,7 +23,7 @@ function handleClick({
           "bg-green-500",
           "hover:bg-green-700",
           "bg-red-500",
-          "hover:bg-red-700"
+          "hover:bg-red-700",
         );
     });
     btns.forEach((btn) => btn.setAttribute("disabled", "true"));
@@ -31,13 +31,13 @@ function handleClick({
     if (answer.isCorrect)
       return e.currentTarget.classList.add(
         "bg-green-500",
-        "hover:bg-green-700"
+        "hover:bg-green-700",
       );
     else {
       const correct = question.answers.find((answ) => answ.isCorrect);
 
       const correctBtn = Array.from(btns).find(
-        (btn) => btn.textContent === correct?.content
+        (btn) => btn.textContent === correct?.content,
       );
 
       correctBtn?.classList.add("bg-green-500", "hover:bg-green-700");

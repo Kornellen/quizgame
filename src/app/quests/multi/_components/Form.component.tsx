@@ -1,5 +1,5 @@
 "use client";
-import { Question } from "@/app/page";
+import { Question } from "@/types/index.type";
 import FormQuests from "./FormQuests.component";
 
 export default function Form({ questions }: { questions: Question[] }) {
