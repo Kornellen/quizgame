@@ -1,5 +1,5 @@
+import { LinkProp } from "@/types/index.type";
 import Link from "next/link";
-import { LinkProp } from "./Nav.component";
 
 export default function Footer({ links }: { links: LinkProp[] }) {
   return (
