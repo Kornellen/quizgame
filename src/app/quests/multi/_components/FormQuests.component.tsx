@@ -21,7 +21,7 @@ export default function FormQuests({ questions }: { questions: Question[] }) {
               >
                 <input
                   type="radio"
-                  className={`peer mr-4 w-4 h-4 checked:bg-gray-500 checked:border-gray-800 rounded-xs appearance-none bg-gray-200 ring-2 ring-gray-700 focus:ring-gray-900`}
+                  className={`peer mr-4 w-4 h-4 checked:bg-gray-900 checked:border-gray-500 rounded-xs appearance-none bg-gray-400 ring-2 ring-gray-700 focus:ring-gray-900`}
                   name={`${question.number}-answ`}
                   id={`${question.number}-${answ.content}`}
                 />{" "}

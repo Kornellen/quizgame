@@ -8,13 +8,13 @@ export default function Form({ questions }: { questions: Question[] }) {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    setIsSubmit(true);
-
     if (isSubmit) return;
 
     const userConfirm = confirm("Are you sure (Y/N)?");
 
     if (!userConfirm) return;
+
+    setIsSubmit(true);
 
     const correctAnswers = Array<string>();
 
