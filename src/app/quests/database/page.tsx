@@ -9,7 +9,7 @@ type Props = {
   };
 };
 
-const QUESTIONS_PER_PAGE = 30;
+export const QUESTIONS_PER_PAGE = 30;
 
 export default async function Page({ searchParams }: Props) {
   let lastSeenId = 1;

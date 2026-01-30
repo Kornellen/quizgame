@@ -1,10 +1,17 @@
 "use client";
 import { Question } from "@/types/index.type";
 import FormQuests from "./FormQuests.component";
+import { useState } from "react";
 
 export default function Form({ questions }: { questions: Question[] }) {
+  const [isSubmit, setIsSubmit] = useState<boolean>(false);
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    setIsSubmit(true);
+
+    if (isSubmit) return;
+
     const userConfirm = confirm("Are you sure (Y/N)?");
 
     if (!userConfirm) return;
@@ -45,18 +52,18 @@ export default function Form({ questions }: { questions: Question[] }) {
     checkedInputsWithLabels.forEach((input) => {
       if (correctAnswers.includes(input.textContent)) {
         input.parentElement?.classList.add(
-          "bg-green-500",
-          "hover:bg-green-700",
+          "bg-green-500!",
+          "hover:bg-green-700!",
         );
         return (correctUserAnsw += 1);
       }
-      input.parentElement?.classList.add("bg-red-500", "hover:bg-red-700");
+      input.parentElement?.classList.add("bg-red-500!", "hover:bg-red-700!");
 
       allInputsLabels.forEach((input) =>
         correctAnswers.includes(input.textContent)
           ? input.parentElement?.classList.add(
-              "bg-green-500",
-              "hover:bg-green-700",
+              "bg-green-500!",
+              "hover:bg-green-700!",
             )
           : null,
       );

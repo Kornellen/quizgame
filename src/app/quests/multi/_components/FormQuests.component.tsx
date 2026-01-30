@@ -17,16 +17,16 @@ export default function FormQuests({ questions }: { questions: Question[] }) {
             {question.answers.map((answ) => (
               <li
                 key={answ.content}
-                className="flex items-center text-xl mt-2 mr-2 p-3 rounded-md hover:bg-gray-700"
+                className={`flex items-center justify-center text-xl mt-2 mr-2 pl-2 rounded-md hover:bg-gray-700 has-[input:checked]:bg-gray-500`}
               >
                 <input
                   type="radio"
-                  className="mr-4 w-1/12 h-4"
+                  className={`peer mr-4 w-4 h-4 checked:bg-gray-500 checked:border-gray-800 rounded-xs appearance-none bg-gray-200 ring-2 ring-gray-700 focus:ring-gray-900`}
                   name={`${question.number}-answ`}
                   id={`${question.number}-${answ.content}`}
                 />{" "}
                 <label
-                  className="w-11/12"
+                  className="w-full h-fit p-4 select-none cursor-pointer"
                   htmlFor={`${question.number}-${answ.content}`}
                 >
                   {answ.content}
