@@ -70,7 +70,7 @@ export class QuestionsRepo implements IQuestionsRepo {
 
   async getQuestionsForExam(ids: number[]): Promise<QuestionDetials[] | null> {
     const questions = await prisma.quest.findMany({
-      where: { id: { in: [...ids] } },
+      where: { id: { in: ids } },
       select: {
         content: true,
         id: true,

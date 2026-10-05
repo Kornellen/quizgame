@@ -2,7 +2,7 @@
 export default function NewQuestionBtn() {
   return (
     <button
-      className="w-50 h-15 mt-4 bg-gray-500 hover:bg-gray-700 text-2xl p-3 rounded-sm"
+      className="w-full h-15 mt-4 bg-[#34325a] hover:bg-[#252342] text-2xl p-3 rounded-sm"
       onClick={() => location.reload()}
     >
       Next Question

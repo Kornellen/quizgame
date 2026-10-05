@@ -4,7 +4,17 @@ import { QuestionService } from "./Questions.service";
 
 const service = QuestionService.getInstance();
 export async function getRandomQuestion(): Promise<Question | null> {
-  const question = await service.getRandomQuestion();
+  let question: Question | null = { number: 0, content: "", answers: [] };
+  let lastId = 0;
+  do {
+    const q = await service.getRandomQuestion();
+    if (!q) {
+      lastId = 0;
+      return (question = null);
+    }
+    question = q;
+    lastId = q.number;
+  } while (question?.number !== lastId);
   return question;
 }
 
@@ -26,4 +36,8 @@ export async function getFullExam(): Promise<Question[] | null> {
   const questions: Question[] | null = await service.getExamQuestions(IDs);
 
   return questions;
+}
+
+export async function getQuestionById(questionId: string) {
+  return await service.getQuestionById(questionId);
 }

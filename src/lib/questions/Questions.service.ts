@@ -97,4 +97,29 @@ export class QuestionService {
 
     return examQuestionsDTO(questions);
   }
+
+  async getQuestionById(id: string): Promise<{
+    number: number;
+    content: string;
+    answers: Answer[];
+  } | null> {
+    const formattedId = Number(id.trim());
+
+    if (isNaN(formattedId)) return null;
+
+    const question = await this.questionRepo.getQuestionById(formattedId);
+
+    if (!question) return null;
+
+    const questionDTO: DTOMapper<
+      QuestionDetials,
+      { number: number; content: string; answers: Answer[] }
+    > = (question: QuestionDetials) => ({
+      number: question.id,
+      content: question.content,
+      answers: question.answers,
+    });
+
+    return questionDTO(question);
+  }
 }

@@ -1,6 +1,6 @@
 import QuestComponent from "../_components/Quest.component";
-import NewQuestionBtn from "./_components/NewQuestionBtn.component";
 import { getRandomQuestion } from "@/lib/questions/Question.action";
+import NewQuestionBtn from "./_components/NewQuestionBtn.component";
 
 export const dynamic = "force-dynamic";
 

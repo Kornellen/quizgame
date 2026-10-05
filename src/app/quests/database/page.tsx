@@ -27,7 +27,7 @@ export default async function Page({ searchParams }: Props) {
   return (
     <>
       <p className="lg:text-5xl text-4xl text-center p-3 mb-2 rounded-md">
-        Question DB
+        Baza Danych Pytań
       </p>
       <FilteredQuestionsList questions={questions} page={page} />
       <GoToTopBtn />

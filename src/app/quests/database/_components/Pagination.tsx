@@ -14,7 +14,7 @@ export default function Pagination({
   const currentPage = `?page=${useSearchParams().get("page")}`;
 
   const LINK_CLASSNAME =
-    "flex justify-center items-center w-20 bg-gray-800 hover:bg-gray-700 select-none h-15 p-2 rounded-sm m-3";
+    "flex justify-center items-center w-20 bg-[#22252e] hover:bg-[#363a4a] select-none h-15 p-2 rounded-sm m-3";
 
   const numOfPages = Math.ceil(numOfQuestions / QUESTIONS_PER_PAGE);
   const pages = Array<number>(numOfPages);
@@ -28,7 +28,7 @@ export default function Pagination({
     >
       <Link
         href={`?page=${page > 1 ? page - 1 : 1}`}
-        className={`${LINK_CLASSNAME} ${!(Number(page) > 1) ? "pointer-events-none bg-gray-500! text-gray-700!" : ""}`}
+        className={`${LINK_CLASSNAME} ${!(Number(page) > 1) && "hidden"}`}
       >
         Prev
       </Link>
@@ -38,7 +38,7 @@ export default function Pagination({
           return (
             <Link
               href={linkPage}
-              className={`${LINK_CLASSNAME} col-span-1 row-span-1 ${linkPage === currentPage ? "bg-[#172238]! hover:bg-gray-600 outline-1 outline-indigo-600" : ""}`}
+              className={`${LINK_CLASSNAME} col-span-1 row-span-1 ${linkPage === currentPage && "bg-[#282938]! hover:bg-[#313341]! outline-1 outline-[#59567c]"}`}
               key={`${page + "-pagi"}`}
             >
               {page}
@@ -49,7 +49,7 @@ export default function Pagination({
 
       <Link
         href={`?page=${page + 1}`}
-        className={`${LINK_CLASSNAME} ${!(lastQuestionId < numOfQuestions) ? "pointer-events-none bg-gray-500! text-gray-700!" : ""}`}
+        className={`${LINK_CLASSNAME} ${!(lastQuestionId < numOfQuestions) && "hidden"}`}
       >
         Next
       </Link>

@@ -2,6 +2,7 @@
 import { Question } from "@/types/index.type";
 import FormQuests from "./FormQuests.component";
 import { useState } from "react";
+import Button from "../../_components/Button";
 
 export default function Form({ questions }: { questions: Question[] }) {
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
@@ -79,20 +80,17 @@ export default function Form({ questions }: { questions: Question[] }) {
   return (
     <form onSubmit={handleSubmit} method="post">
       <FormQuests questions={questions} />
-      <div className="grid lg:grid-cols-4 grid-cols-6 grid-rows-1">
-        <button
-          className="m-4 lg:col-start-2 col-start-1 lg:col-span-1 col-span-3 h-15 bg-gray-500 hover:bg-gray-700 text-2xl p-3 rounded-sm"
-          type="submit"
-        >
-          Submit
-        </button>
-        <button
-          className="m-4 lg:col-span-1 col-span-3 h-15 bg-gray-500 hover:bg-gray-700 text-2xl p-3 rounded-sm"
+      <div className="grid lg:grid-cols-5 grid-cols-6 grid-rows-1">
+        <Button type="submit" className="col-start-2 col-span-1">
+          Prześlij
+        </Button>
+        <Button
           type="button"
+          className="col-start-4 col-span-1"
           onClick={() => location.reload()}
         >
-          New
-        </button>
+          Nowy
+        </Button>
       </div>
     </form>
   );
